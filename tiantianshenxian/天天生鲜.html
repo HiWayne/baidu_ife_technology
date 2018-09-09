@@ -1,0 +1,601 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>天天生鲜</title>
+<style type="text/css">
+    body{
+        font-size:12px;
+        color:#666666
+    }
+    body,div,p,span,a,ul,li,img,h3{
+        margin:0px 0px;
+        padding:0px 0px;
+    }
+    input{
+        outline:none;
+        border:0;
+    }
+    a{
+        text-decoration: none;
+    }
+    ul{
+        list-style:none outside none;
+    }
+    /*1.login部分*/
+    div.login{
+        margin:0 auto;
+        height:29px;
+        background-color:#f7f7f7;
+        border-bottom:1px solid rgba(0,0,0,0.2);
+        text-align:center;
+        line-height: 20px;
+    }
+    div.login p,h3,span{
+        display:inline-block;
+        color:rgb(0,0,0,0.7)
+    }
+    div.login3 span{
+        padding:0px 5px;
+    }
+    div.login1{
+        width:1200px;
+        height:29px;
+        line-height: 29px;
+        margin:0px auto;
+        position: relative;
+    }
+    div.login2,div.login3{
+        display:inline-block;
+    }
+    div.login2{
+        float:left;
+        text-align:center;
+    }
+    div.login3{
+        width:auto;
+        height:29px;
+        line-height: 29px;
+        padding: 0px 0px;
+        position: absolute;
+        top:0px;
+        right:140px;
+        text-align: center;
+    }
+    /*2.search部分*/
+    div.search{
+        height:90px;
+
+    }
+    div.search-content{
+        width:1200px;
+        height:90px;
+        margin:0px auto;
+    }
+    a.search1{
+        margin-top:29px;
+        margin-left:17px;
+        float:left;
+    }
+    div.search2{
+        width:616px;
+        height: 38px;
+        line-height: 38px;
+        border:1px solid #37ab40;
+        margin-left: 120px;
+        margin-top: 36px;
+        float:left;
+    }
+    div.search2 .text{
+        width:516px;
+        height: 38px;
+        line-height: 38px;
+        background: url(images/search.png) no-repeat 12px 9px;
+        /* background: palevioletred; */
+        text-indent: 40px;
+    }
+    div.search2 .sub{
+        width:98px;
+        height: 39px;
+        background: #37ab40;
+        font-size:14px;
+        color:white;
+        line-height: 39px;
+        float:right;
+    }
+    div.shop{
+        width:200px;
+        height:40px;
+        float:right;
+        margin-top:36px;
+    }
+    div.shop a{
+        display: inline-block;
+        width:160px;
+        height: 40px;
+        border:1px solid #dddddd;
+        color:#37ab40;
+        font-size:14px;
+        line-height: 38px;
+        background: url(images/buycar.png) no-repeat 14px 10px;
+        text-indent: 56px;
+        box-sizing:border-box;
+    }
+    div.shop span{
+        float:right;
+        width:40px;
+        height:40px;
+        background-color:#ff8800;
+        color:white;
+        font-size: 18px;
+        line-height: 40px;
+        text-align:center;
+    }
+    /*3.全部商品分类*/
+    div.sorb{
+        height:40px;
+        margin-top:26px;
+        border-bottom:2px solid #37ab40;
+    }
+    div.sorb-content{
+        width:1200px;
+        height:40px;
+        margin:0px auto;
+    }
+    div.sorb span.sorb1{
+        width:200px;
+        height:40px;
+        text-align:center;
+        font-size: 14px;
+        line-height: 40px;
+        background-color: #37ab40;
+        float:left;
+        color:white;
+    }
+    div.sorb ul{
+        width:235px;
+        height:40px;
+        line-height: 40px;
+        margin-left: 15px;
+        float:left;
+    }
+    div.sorb ul>li{
+        float:left;
+        font-size: 14px;
+        position: relative;
+    }
+    div.sorb ul>li::after{
+        content:"";
+        width:1px;
+        height:14px;
+        background: #666666;
+        position: absolute;
+        right:0px;
+        top:13px;
+        box-shadow: 0px 0px 1px rgb(0,0,0,0.2);
+    }
+    div.sorb ul>li:last-child:after{
+        display:none;
+    }
+    div.sorb li>a{
+        color:#666666;
+        margin:0px 20px;
+    }
+    /*4.水果列表/轮播图等*/
+    div.slider{
+        height:270px;
+    }
+    div.slider-content{
+        width:1200px;
+        margin:0px auto;
+        position: relative;
+    }
+    ul.slider1{
+        width:200px;
+        height:270px;
+        float:left;
+    }
+    ul.slider1>li{
+        display:inline-block;
+        width:198px;
+        height:44px;
+        line-height: 44px;
+        font-size: 14px;
+        text-align: center;
+        position:relative;
+        border:1px solid #f7f7f7;
+        border-top:none
+    }
+    ul.slider1>li:after{
+        content:"";
+        width:24px;
+        height:21px;
+        background:url(images/arrow.png) no-repeat;
+        position: absolute;
+        left:172px;
+        top:11.5px;
+    }
+    ul.slider1>li>img{
+        margin-right:1em;
+    }
+    div.slider2{
+        width:760px;
+        height:270px;
+        overflow:hidden;
+        position:relative;
+    }
+    div.slider3{
+        width:3800px;
+        height:270px;
+        position: absolute;
+        left:-760px;
+    }
+    div.slider3 img{
+        float: left;
+    }
+    div.slider4{
+        width:120px;
+        height:19px;
+        line-height: 19px;
+        text-align:center;
+        padding:3.5px 3px;
+        border-radius:9.5px;
+        background:rgba(255,255,255,0.3);
+        position: absolute;
+        left:50%;
+        bottom:2px;
+        margin-left:-60px;
+        z-index:10;
+    }
+    div.slider4>ul{
+        list-style:none outside none;
+    }
+    div.slider4 li{
+        display:inline-block;
+        width:12px;
+        height:12px;
+        border-radius:50%;
+        cursor:pointer;
+    }
+    div.slider4 ul li:nth-child(1){
+        background: white;
+        margin-right:26px;
+    }
+    div.slider4 ul li:nth-child(2){
+        background: white;
+        margin-right:26px;
+    }
+    div.slider4 ul li:nth-child(3){
+        background: white;
+    }
+    .on{
+        background:greenyellow !important;
+    }
+    button.but1{
+        width:25px;
+        height:25px;
+        background:rgba(0,0,0,0.3) url(images/leftarrow.png) no-repeat;
+        position: absolute;
+        left:15px;
+        top:50%;
+        margin-top:-12.5px;
+        border:none;
+        cursor:pointer;
+    }
+    button.but2{
+        width:25px;
+        height:25px;
+        background:rgba(0,0,0,0.3) url(images/rightarrow.png) no-repeat;
+        position: absolute;
+        right:15px;
+        top:50%;
+        margin-top:-12.5px;
+        border:none;
+        cursor:pointer;
+    }
+    .but1:hover{
+        background: rgba(0,0,0,0.7) url(images/leftarrow.png) no-repeat;
+    }
+    .but2:hover{
+        background: rgba(0,0,0,0.7) url(images/rightarrow.png) no-repeat;
+    }
+    button.but1,button.but2{
+        display:none;
+    }
+    div.slider2:hover button{
+        display:block;
+    }
+    .slider5{
+        width:240px;
+        height:270px;
+        font-size: 0px;
+        position: absolute;
+        right:0px;
+        top:0px;
+    }
+    /*Food图片*/
+    .food{
+        height:335px;
+        margin-top:25px;
+    }
+    .food-content{
+        width:1200px;
+        height:335px;
+        margin:0px auto;
+    }
+    #food{
+        font-size:16px;
+        margin-right:20px;
+        color:#37ab40;
+        font-weight: bold;
+        float:left;
+    }
+    .food1{
+        height:29px;
+        line-height: 29px;
+        float:left;
+    }
+    #food1{
+        margin-left: 10px;
+    }
+    .food1 li{
+        display:inline-block;
+    }
+    #food3{
+        height:29px;
+        line-height: 29px;
+        float:right;
+    }
+    .food4{
+        width:1200px;
+        height:300px;
+    }
+    .food2{
+        width:200px;
+        height:300px;
+        float:left;
+    }
+    .food3{
+        width:1000px;
+        height:300px;
+        float:left;
+        letter-spacing:-8px;
+    }
+    .food3>li{
+        width:250px;
+        height:300px;
+        border-right:1px solid #666666;
+        border-bottom:1px solid #666666;
+        text-align:center;
+        letter-spacing:normal;
+        float:left;
+        box-sizing: border-box;
+    }
+    .food3 div{
+        font-size:14px;
+        height:50px;
+        line-height: 50px;
+        margin-bottom:10px;
+    }
+    .food3 h5{
+        font-size:20px;
+        color:red;
+        font-weight: bold;
+        height:35px;
+        line-height: 35px;
+        margin-top:17px;
+    }
+</style>
+<script type="text/javascript" src="js/jquery.1.10.2.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var $back=$('.but1');
+        var $next=$('.but2');
+        var $screen=$('.slider3');
+        var $pot=$(".pot");
+        var $index=1;
+        var timer;
+
+        /*无限循环*/
+        function pot(offset){
+            var left=parseInt($screen.css('left'))+offset;
+            $screen.animate({"left":left},300,function(){
+                if(left<-2300){
+                    $screen.css("left",-760);
+                }
+                if(left>-760){
+                    $screen.css("left",-760*3);
+                }
+            })
+        }
+
+        /*小圆点点亮*/
+        function showbutton(){
+            $pot.eq($index-1).addClass('on').siblings().removeClass('on');
+        }
+        
+        /*左右按钮+圆点颜色变换*/
+        $back.click(function(){
+            if($screen.is(':animated')){
+                return;
+            }
+            if($index==1){
+                $index=3;
+            }
+            else{
+                $index-=1;
+            }
+            pot(760);
+            showbutton();
+        })
+
+        $next.click(function(){
+            if($screen.is(':animated')){
+                return;
+            }
+            if($index==3){
+                $index=1;
+            }
+            else{
+                $index+=1;
+            }
+            pot(-760);
+            showbutton();
+        })
+
+        
+        /*小圆点切换*/
+        $pot.click(function(){
+            var newindex=parseInt($(this).attr('index'));
+            if($screen.is(':animated')||newindex==$index){
+                return;
+            }
+            else{
+                var offset=-760*(newindex-$index);
+                $index=newindex;
+                pot(offset);
+                showbutton();
+            }
+        })
+
+        /*自动播放*/
+        function play(){
+            timer=setInterval(function(){
+                $next.click();
+                }
+                ,3000
+            )
+        }
+        function stop(){
+            clearInterval(timer);
+        }
+
+        $screen.hover(stop,play);
+        play();
+    });
+    
+</script>
+
+</head>
+
+<body>
+    <!--1.login部分-->
+    <div class="login">
+        <div class="login1">
+        <div class="login2"><h3 style="font-weight:normal;">欢迎您来天天生鲜！</h3></div>
+            
+            <div class="login3">
+                <p>
+                    <span>欢迎您：<a style="color:orange;text-decoration: none" href="javascript:;">张山</a></span>
+                </p>
+                
+                <div style="width:1px;height:12px;background:rgba(0,0,0,0.6);display:inline-block;box-shadow: 0px 0px 1.5px rgb(65, 63, 63);"></div>
+                
+                <p>
+                    <span>我的购物车</span>
+                </p>
+                
+                <div style="width:1px;height:12px;background:rgba(0,0,0,0.6);display:inline-block;box-shadow: 0px 0px 1.5px rgb(65, 63, 63);"></div>
+                
+                <p>
+                    <span>我的订单</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--2.search部分-->
+    <div class="search">
+        <div class="search-content">
+            <a href="" class="search1"><img src="images/logo.png" alt="logo" /></a>
+
+            <div style="display:inline-block;" class="search2">
+                <form action="">
+                    <input type="text" placeholder="搜索" class="text" />
+                    <input type="submit" value="搜索" class="sub" />
+                </form>
+            </div>
+
+            <div style="display:inline-block;" class="shop">
+                <a href="">我的购物车</a>
+                <span>0</span>
+            </div>
+        </div>
+    </div>
+    <!--3.全部商品分类-->
+    <div class="sorb">
+        <div class="sorb-content">
+            <p>
+                <span class="sorb1">全部商品分类</span>
+            </p>
+            <ul>
+                <li class="sorb2"><a href="">首页</a></li>
+                <li class="sorb3"><a href="">手机生鲜</a></li>
+                <li class="sorb4"><a href="">抽奖</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--4.水果列表/轮播图等-->
+    <div class="slider">
+        <div class="slider-content">
+            <ul class="slider1">
+                <li><img src="images/icon01.png" alt="icon" /><a href="">新鲜水果</a></li>
+                <li><img src="images/icon02.png" alt="icon" /><a href="">新鲜水果</a></li>
+                <li><img src="images/icon03.png" alt="icon" /><a href="">新鲜水果</a></li>
+                <li><img src="images/icon04.png" alt="icon" /><a href="">新鲜水果</a></li>
+                <li><img src="images/icon05.png" alt="icon" /><a href="">新鲜水果</a></li>
+                <li><img src="images/icon06.png" alt="icon" /><a href="">新鲜水果</a></li>
+            </ul>
+            <div class="slider2">
+                <div class="slider3">
+                    <a href=""></a><img src="images/meat1.jpg" alt="禽肉" /></a>
+                    <a href=""></a><img src="images/slider.jpg" alt="水果" /></a>
+                    <a href=""></a><img src="images/vegetable.jpg" alt="蔬菜" /></a>
+                    <a href=""></a><img src="images/meat1.jpg" alt="禽肉" /></a>
+                    <a href=""></a><img src="images/slider.jpg" alt="水果" /></a>
+                </div>
+                <div class="slider4">
+                    <ul>
+                        <li class="on pot" index="1"></li>
+                        <li class="pot" index="2"></li>
+                        <li class="pot" index="3"></li>
+                    </ul>
+                </div>
+                <button type="button" class="but1 arrow"></button>
+                <button type="button" class="but2 arrow"></button>
+            </div>
+            <div class="slider5">
+                <a href=""></a><img src="images/right01.jpg" alt="" /></a>
+                <a href=""></a><img src="images/right02.jpg" alt="" /></a>
+            </div>
+        </div>
+    </div>
+    <!--Food图片-->
+    <div class="food">
+        <div class="food-content">
+            <div>
+                <div style="width:1200px;height:29px;border-bottom:2px solid #37ab40;">
+                    <a href="" id="food">海鲜水产</a>
+                    <ul class="food1">
+                        <span>|</span>
+                        <li id="food1"><a href="">深海鳕鱼</a></li>
+                        <li id="food2"><a href="">帝王蟹</a></li>
+                    </ul>
+                    <a href="" id="food3">查看更多&gt;&gt;</a>
+                </div>
+            </div>
+
+            <div class="food4">
+                <a href="" class="food2"><img src="images/fish.jpg"/></a>
+                <div style="width:1000px;height:300px;float:left;position:relative;">
+                    <ul class="food3">
+                        <li><div>基围虾</div><a href=""><img src="images/daxia.jpg" /></a><h5>¥39.9</h5></li>
+                        <li><div>基围虾</div><a href=""><img src="images/daxia.jpg" /></a><h5>¥39.9</h5></li>
+                        <li><div>基围虾</div><a href=""><img src="images/daxia.jpg" /></a><h5>¥39.9</h5></li>
+                        <li><div>基围虾</div><a href=""><img src="images/daxia.jpg" /></a><h5>¥39.9</h5></li> 
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
