@@ -47,6 +47,7 @@ ul{
     top:0px;
     left:100px;
     background:#222c3c;
+    overflow:auto;
 }
 .two p{
     margin-bottom:10px;
