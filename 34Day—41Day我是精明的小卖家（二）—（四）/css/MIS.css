@@ -1,0 +1,127 @@
+input, td, div {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    padding-top: 30px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart {
+    margin-top: 30px;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.SVG+div {
+    margin-left: 30px;
+}
+
+#wrapperDiv {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#wrapperTable {
+    border-collapse: collapse;
+}
+
+td {
+    padding: 0;
+    position: relative;
+    border: 1px solid #000;
+}
+
+.data>input {
+    display: inline-block;
+    width: 80px;
+    height: 50px;
+    font-size: 14px;
+    text-align: center;
+    background: none;
+    color: #000;
+    border: 0;
+    cursor: pointer;
+}
+
+.data::before {
+    content: "编辑";
+    display: inline-block;
+    position: absolute;
+    right: 1px;
+    bottom: 3px;
+    width: 28px;
+    height: 14px;
+    font-size: 14px;
+    color: rgba(107, 107, 107, 0.6);
+    text-align: center;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/*.data::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 8px;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+}*/
+
+.data:hover::before {
+    opacity: 1;
+}
+
+.divEdit {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    z-index: 20;
+}
+
+.divEdit>input {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.divEdit>#save {
+    position: absolute;
+    top: 0px;
+    right: -30px;
+}
+
+.divEdit>#cancel {
+    position: absolute;
+    top: 25px;
+    right: -30px;
+}
