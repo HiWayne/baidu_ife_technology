@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>restaurant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        .clearfix::before {
+            content: ".";
+            display: block;
+            height: 0;
+            line-height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+
+        .common {
+            display: -webkit-flex;
+            display: flex;
+            flex-flow: row nowrap;
+            /*justify-content: center;*/
+            align-items: center;
+            text-align: center;
+        }
+
+        .common1 {
+            display: -webkit-flex;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        #cook {
+            float: left;
+            margin-top: 20px;
+            margin-left: 35px;
+            margin-bottom: 20px;
+        }
+
+        #cook>p {
+            display: inline-block;
+            width: 130px;
+        }
+
+        #cook>p>span {
+            display: inline-block;
+            width: 25px;
+        }
+
+        #customer,
+        #customerList,
+        .door {
+            float: right;
+            margin: 20px 25px;
+        }
+
+        #customerList>ul {
+            display: inline-block;
+            width: 100px;
+        }
+
+        #customer {
+            width: 450px;
+        }
+
+        #customer>p {
+            display: inline-block;
+            width: 150px;
+        }
+
+        #customer>ul {
+            display: inline-block;
+            width: 150px;
+        }
+
+        .door {
+            height: 150px;
+            color: #ffffff;
+            background: rgb(105, 57, 2);
+            margin-top: 45px;
+        }
+
+        #waiter {
+            margin-left: 35px;
+        }
+
+        #waiter>div {
+            display: inline-block;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <!--餐厅现金-->
+        <p id="restaurant" style="margin-top:20px;text-align:center;">餐厅现金：<span></span><button id="addCustomer" style="margin-left:10px;">来一个顾客</button></p>
+        <!--厨师位置-->
+        <div class="common" id="cook">
+            <div>厨师<br /><img width="150" height="150" src="./images/cook.jpg" alt="厨师" /></div>
+            <p></p>
+            <ul>
+                <li>待做的菜列表：</li>
+            </ul>
+        </div>
+        <!--顾客队列-->
+        <div class="common" id="customerList">
+            <div>排队队伍<br /><img width="150" height="150" src="./images/customerList.jpg" alt="顾客排队" /></div>
+            <ul>现在没有顾客排队</ul>
+        </div>
+        <!--门-->
+        <div class="door common">门口</div>
+        <!--顾客位置-->
+        <div class="common1" id="customer">
+            <div class="common" id="customer0">
+                <div>餐厅座位<br /><img style="display:inline-block;width:150px;height:150px;" width="150" height="150" src="./images/emptyCustomer.jpg"
+                        alt="没有顾客" /></div>
+                <p></p>
+                <ul></ul>
+            </div>
+            <div class="common" id="customer1">
+                <div>餐厅座位<br /><img style="display:inline-block;width:150px;height:150px;" width="150" height="150" src="./images/emptyCustomer.jpg"
+                        alt="没有顾客" /></div>
+                <p></p>
+                <ul></ul>
+            </div>
+            <div class="common" id="customer2">
+                <div>餐厅座位<br /><img style="display:inline-block;width:150px;height:150px;" width="150" height="150" src="./images/emptyCustomer.jpg"
+                        alt="没有顾客" /></div>
+                <p></p>
+                <ul></ul>
+            </div>
+        </div>
+        <!--服务员位置-->
+        <div class="clearfix" id="waiter">
+            <div id="waiterMove">服务员<br /><img width="150" height="150" src="./images/waiterOrder.jpg" alt="服务员" /></div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="./class.js"></script>
+<script type="text/javascript" src="./methods.js"></script>
+<script type="text/javascript" src="./variables.js"></script>
+<script type="text/javascript" src="./process.js"></script>
+
+</html>
