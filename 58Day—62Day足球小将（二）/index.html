@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>football court</title>
+    <link rel="stylesheet" type="text/css" href="./js/index.css">
+</head>
+
+<body>
+    <canvas id="footballFieldCanvas">Your brower is too old that can't show canvas</canvas>
+    <canvas id="playerCanvas">Your brower is too old that can't show canvas</canvas>
+    <div id="controll">
+        <form>
+            <div>
+                <p>球员属性</p>
+                <div>速度：<input id="VNum" type="text"></div>
+                <div>爆发力：<input id="power" type="text" style="width:124px;"></div>
+                <div>体力：<input id="physical" type="text"></div>
+                <div>力量：<input id="strength" type="text"></div>
+                <div>技术：<input id="technique" type="text"></div>
+                <div><button id="createPlayer">生成球员</button></div>
+            </div>
+            <div>
+                <p>球员和足球的位置</p>
+                球员坐标：
+                <div>
+                    第
+                    <select class="playerIndex" id="playerIndex">
+
+                    </select>
+                    个球员
+                </div>
+                <div><label for="playerPosX">x</label><input id="playerPosX" type="text"></div>
+                <div><label for="playerPosY">y</label><input id="playerPosY" type="text"></div>
+                <div><button id="createPlayerPosition">生成球员位置</button></div>
+                足球坐标
+                <div>x<input id="footballPosX" type="text"></div>
+                <div>y<input id="footballPosY" type="text"></div>
+                <div><button id="createFootballPosition">创建并生成足球位置</button></div>
+            </div>
+            <div>
+                <p>球员或足球动作和参数</p>
+                <label for="action_select">动作：</label>
+                <select id="action_select">
+                    <option value="run">奔跑</option>
+                    <option value="footballScroll">足球滚动</option>
+                    <option value="kick">踢球</option>
+                </select>
+                <div class="param" id="run">
+                    <div>
+                        第
+                        <select class="playerIndex" id="playerIndex2">
+
+                        </select>
+                        个球员
+                    </div>
+                    <div>
+                        <label for="action_targetX">目的地x坐标：</label>
+                        <input id="action_targetX" type="text">
+                    </div>
+                    <div>
+                        <label for="action_targetY">目的地y坐标：</label>
+                        <input id="action_targetY" type="text">
+                    </div>
+                </div>
+                <div class="param" id="footballScroll">
+                    <div>
+                        <label for="action_footballRadian">角度方向（角度值）：</label>
+                        <input id="action_footballRadian" type="text">
+                    </div>
+                    <div>
+                        <label for="action_footballV0">足球初速度：</label>
+                        <input id="action_footballV0" type="text">
+                    </div>
+                </div>
+                <div class="param" id="kick">
+                    <div>
+                        第
+                        <select class="playerIndex" id="playerIndex3">
+
+                        </select>
+                        个球员
+                    </div>
+                    <div>
+                        <label for="action_playerRadian">角度方向（角度值）：</label>
+                        <input id="action_playerRadian" type="text">
+                    </div>
+                    <div>
+                        <label for="action_playerStrength">力量（不超过该球员最高力量）：</label>
+                        <input id="action_playerStrength" type="text">
+                    </div>
+                </div>
+                <div>
+                    <button id="action_execute">执行</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+<script src="./js/footballField.js"></script>
+<script src="./js/player.js"></script>
+<script src="./js/football.js"></script>
+<script src="./js/index.js"></script>
+
+</html>
