@@ -1,0 +1,44 @@
+div, canvas, input, form, p {
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    width: 140px;
+}
+
+#footballFieldCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#playerCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#controll {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width:240px;
+}
+
+#controll p {
+    color: rgb(36, 35, 35);
+    font-weight: bold;
+}
+
+#controll>form>div~div {
+    margin-top: 20px;
+}
+
+.param {
+    display: none;
+}
+
+.show {
+    display: block;
+}
