@@ -1,0 +1,275 @@
+<!Doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>email</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .active {
+            background: rgb(248, 156, 233);
+        }
+
+        .wrapper {
+            display: inline-block;
+            margin: 10px 0 0 10px;
+            padding: 3px 3px 0px 3px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        #email-input {
+            border: 1px solid rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <input id="email-input" type="text">
+        <ul id="email-sug-wrapper" class="email-sug"></ul>
+    </div>
+
+    <script type="text/javascript">
+        let email = document.getElementById('email-input');
+        let pi_ul = document.getElementById('email-sug-wrapper');
+        let pi_li = pi_ul.childNodes;
+        let postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+        let email_value;
+        let liHtml;
+        let currentIndex = 0;
+
+        //input获取焦点
+        efocus();
+        
+        //监听input输入按键事件
+        email.oninput = function (key) {
+            if (key.keyCode !== 40 || 38 || 13) {
+                currentIndex = 0;
+            }
+            let value = getValue();
+            let li = createLi(value);
+            createUl(li);
+            hideEmpty();
+        };
+
+        //监听input功能按键事件
+        email.onkeydown = function (key) {
+            let styleBoolean = (pi_ul.style.display === "block");
+            //如果按的是下键
+            if (styleBoolean && key.keyCode === 40) {
+                if (currentIndex === pi_ul.childNodes.length - 1) {
+                    currentIndex = 0;
+                }
+                else {
+                    currentIndex += 1;
+                };
+            }
+            //如果按的是上键
+            else if (styleBoolean && key.keyCode === 38) {
+                if (currentIndex === 0) {
+                    currentIndex = pi_ul.childNodes.length - 1;
+                }
+                else {
+                    currentIndex -= 1;
+                };
+            }
+            //如果按Enter键
+            else if (styleBoolean && key.keyCode === 13) {
+                clickLi();
+            }
+            //如果按Esc键
+            else if (key.keyCode === 27) {
+                if (email.value !== "") {
+                    selectText();
+                };
+            }
+            //按其他键
+            else {
+                currentIndex = 0;
+            };
+            setClass();
+        };
+
+        //获得input输入值
+        function getValue() {
+            email_value = email.value.trim();
+            return email_value;
+        };
+
+        //根据input输入值生成待渲染的数组数据
+        function createLi(value) {
+            let tempPostfixList = postfixList.slice();
+            let emailValue = "";
+            let index = value.indexOf("@");
+            let newPostfixList = [];
+            //如果输入的字符中有@
+            if (index !== -1) {
+                //获得@之前的字符
+                let tValue = value;
+                value = tValue.slice(0, index).trim();
+                //获得@之后的字符
+                emailValue = tValue.slice(index + 1).trim();
+                for (let i = 0; i < tempPostfixList.length; i++) {
+                    //如果@之后的字符匹配postfixList数组里的某项
+                    if (emailValue && tempPostfixList[i].slice(0, emailValue.length) === emailValue) {
+                        //把匹配的那项email后缀 push进新数组newPostfixList里                         
+                        newPostfixList.push(tempPostfixList[i]);
+                    }
+                }
+                //如果@之后没有匹配的email后缀
+                if (newPostfixList.length === 0) {
+                    //显示所有email后缀
+                    newPostfixList = tempPostfixList;
+                }
+            }
+            //如果没有@
+            else {
+                newPostfixList = tempPostfixList;
+            };
+            for (let j = 0; j < newPostfixList.length; j++) {
+                newPostfixList[j] = value + "@" + newPostfixList[j]
+            };
+            return newPostfixList;
+        };
+
+        //根据传入的数组渲染ul列表
+        function createUl(li) {
+            let ulHtml = "";
+            for (let i = 0; i < li.length; i++) {
+                ulHtml += "<li>" + li[i] + "</li>";
+            };
+            pi_ul.innerHTML = ulHtml;
+        };
+
+        //根据输入值是否为空来确定是否隐藏显示ul列表
+        function hideEmpty() {
+            if (!email_value) {
+                hidden();
+            }
+            else {
+                show();
+                liClass();
+                setClass();
+            };
+        };
+
+        //ul列表点击事件, 将被点击的li在所在ul的索引赋值给currentIndex, 并执行clickLi函数
+        pi_ul.addEventListener('click', function (e) {
+            //兼容IE浏览器
+            e = e || window.event;
+            for (let i = 0; i < pi_ul.childNodes.length; i++) {
+                //如果点击事件是ul中的li
+                if (e.target === pi_ul.childNodes[i]) {
+                    //currentIndex赋值为当前li的索引
+                    currentIndex = i;
+                    clickLi();
+                };
+            };
+        });
+
+        //用js实现hover效果并将currentIndex赋值为当前hover的li的索引值
+        function liClass() {
+            //给每个li添加鼠标移入和移出事件
+            for (let i = 0; i < pi_ul.childNodes.length; i++) {
+                pi_ul.childNodes[i].onmouseover = function () {
+                    currentIndex = i;
+                    setClass();
+                };
+                pi_ul.childNodes[i].onmouseout = function () {
+                    currentIndex = 0;
+                    pi_ul.childNodes[i].classList.remove("active");
+                };
+            };
+        };
+
+        //清除所有有active样式的li样式, 并给当前索引为currentIndex的li加上active样式
+        //当currentIndex改变时会调用setClass，让索引值是当前currentIndex值的li变色(即添加active样式)
+        function setClass() {
+            //onkeyPress会调用setClass且在oninput之前触发, 这时的ul子元素数量为0, classList会报错, 所以这种情况要return掉
+            if (!pi_ul.childNodes.length) return
+            for (let i = 0; i < pi_ul.childNodes.length; i++) {
+                if (pi_ul.childNodes[i].className === "active") {
+                    pi_ul.childNodes[i].classList.remove("active");
+                };
+            };
+            pi_ul.childNodes[currentIndex].classList.add("active");
+        };
+
+        //将索引值为currentIndex的li的内容写进input输入框并隐藏ul, 同时让input获取焦点
+        function clickLi() {
+            let value = pi_ul.childNodes[currentIndex].innerText;
+            email.value = HtmlUtil.HtmlDecode(value);
+            pi_ul.style.display = "none";
+            efocus();
+        };
+
+        //选中文字(写的不对)
+        /*function selectText() {
+            if (document.selection) {
+                let range = document.body.createTextRange();
+                range.moveToElementText(document.getElementById('email-input'));
+                range.select();
+            };
+            else if (window.getSelection) {
+                let range = document.createRange();
+                range.selectNode(document.getElementById('email-input'));
+                window.getSelection().addRange(range);
+            };
+        };*/
+
+        //选中文字
+        function selectText() {
+            let range = document.getElementById('email-input');
+            range.select();
+        };
+
+        //获取焦点
+        function efocus() {
+            email.focus();
+        };
+
+        //定义一个实现html转码、解码的对象
+        let HtmlUtil = {
+            /*1.用浏览器内部转换器实现html转码*/
+            HtmlEncode: function (html) {
+                //1.首先动态创建一个容器标签元素，如DIV
+                let temp = document.createElement('div');
+                //2.然后将要转换的字符串设置为这个元素的innerText(ie支持)或者textContent(火狐，google支持)
+                (temp.contentText) ? (temp.contentText = html) : (temp.innerText = html);
+                //3.最后返回这个元素的innerHTML，即得到经过HTML编码转换的字符串了
+                let output = temp.innerHTML;
+                temp = null;
+                return output;
+            },
+            HtmlDecode: function (html) {
+                let temp = document.createElement('div');
+                temp.innerHTML = html;
+                let output = temp.contentText || temp.innerText;
+                temp = null;
+                return output;
+            }
+        };
+
+        //隐藏ul
+        function hidden() {
+            pi_ul.style.display = "none";
+        };
+
+        //显示ul
+        function show() {
+            pi_ul.style.display = "block";
+        };
+    </script>
+</body>
+
+</html>
