@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我是精明的小卖家1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="ife31data.js"></script>
+    <style>
+        #wrapperDiv td{
+            border: 1px solid #000;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    选择地区：<select id="region-select">
+        <option value="null">所有地区</option>
+        <option value="华东">华东</option>
+        <option value="华南">华南</option>
+        <option value="华北">华北</option>
+    </select>
+
+    选择产品：<select id="production-select">
+        <option value="null">所有产品</option>
+        <option value="手机">手机</option>
+        <option value="笔记本">笔记本</option>
+        <option value="智能音箱">智能音箱</option>
+    </select>
+
+    <script>
+        var region = document.getElementById("region-select");
+        var production = document.getElementById("production-select");
+        
+        //创建初始表格，只有表头和空的body部分
+        (function createInitDom() {
+            let tempMonth = 12;
+            let wrapper = document.createElement("div");
+            wrapper.setAttribute("id","wrapperDiv");
+            let wrapperTable = document.createElement("table");
+            let initHtml = "<thead><tr><th>商品</th><th>地区</th>";
+            for (let i = 0; i < tempMonth; i++) {
+                initHtml += "<th>" + (i + 1) + "月</th>"
+            }
+            initHtml += "</tr></thead><tbody id=\"wrapperTbody\"></tbody>"
+            wrapperTable.innerHTML = initHtml;
+            wrapper.appendChild(wrapperTable);
+            document.body.appendChild(wrapper);
+        })();
+        
+        //页面加载好就调用（由于下拉选项是空，所以展现全部内容）
+        createDom(handleData());
+        
+        //监听下拉选项变化
+        region.onchange = function() {
+            createDom(handleData());
+        };
+
+        production.onchange = function () {
+            createDom(handleData());
+        };
+        
+        //根据下拉选项的值做数据处理
+        function handleData(){
+            let newData = [];
+            if (region.value === "null") {
+                for (let i = 0; i < sourceData.length; i++) {
+                    if (production.value === "null") {
+                        newData.push(sourceData[i]);
+                    }
+                    else {
+                        if (sourceData[i].product === production.value) {
+                            newData.push(sourceData[i]);
+                        }
+                    };
+                };
+                return newData;
+            }
+            else {
+                for (let i = 0; i < sourceData.length; i++) {
+                    if(sourceData[i].region === region.value){
+                        if (production.value === "null") {
+                        newData.push(sourceData[i]);
+                        }
+                        else {
+                            if (sourceData[i].product === production.value) {
+                                newData.push(sourceData[i]);
+                            }
+                        };
+                    };
+                };
+                return newData;
+            };
+        };
+        
+        //根据传入的参数渲染表格body部分的内容
+        function createDom(newData) {
+            let data = "";
+            if (newData) {
+                for (let i = 0; i < newData.length; i++) {
+                    data += "<tr>"
+                    data += "<td>" + newData[i].product + "</td>";
+                    data += "<td>" + newData[i].region + "</td>";
+                    for (let j = 0; j < newData[i].sale.length; j++) {
+                        data += "<td>" + newData[i].sale[j] + "</td>"
+                    }
+                    data += "</tr>"
+                };
+                document.getElementById("wrapperTbody").innerHTML = data;
+            }
+        }
+    </script>
+</body>
+</html>
